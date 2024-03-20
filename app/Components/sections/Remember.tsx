@@ -3,8 +3,11 @@ import React, { useEffect, useRef } from 'react'
 import {motion} from "framer-motion"
 import { wrap } from '@motionone/utils';
 
-
-function Remember() {
+interface RememberProps{
+  baseVelocity: number,
+  children: React.ReactNode
+}
+function Remember({baseVelocity, children}: RememberProps) {
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
@@ -25,7 +28,7 @@ function Remember() {
 
   const directionFactor = useRef<number>(1);
   useAnimationFrame((t, delta) => {
-    let moveBy = directionFactor.current * -5 * (delta / 1000);
+    let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
     /**
      * This is what changes the direction of the scroll once we
@@ -48,19 +51,19 @@ function Remember() {
     <>
     <div 
     
-      className="w-full snap-center bg-monfond h-[50vh]  m-0   items-center justify-center flex flex-col  ">
+      className="w-full snap-center bg-monfond   m-0   items-center justify-center flex flex-col  ">
         <div  className='flex w-full whitespace-nowrap flex-wrap overflow-hidden ' >
           <motion.div 
               style={{x}} 
-              className='flex whitespace-nowrap flex-nowrap gap-x-4 text-[12rem] text-monRose font-black uppercase'>
-              <motion.span className='block mr-8'>ÖRFJÄLL</motion.span>
-              <motion.span className='block mr-8'>ÖRFJÄLL</motion.span>
-              <motion.span className='block mr-8'>ÖRFJÄLL</motion.span>
-              <motion.span className='block mr-8'>ÖRFJÄLL</motion.span>
-              <motion.span className='block mr-8'>ÖRFJÄLL</motion.span>
-              <motion.span className='block mr-8'>ÖRFJÄLL</motion.span>
-              <motion.span className='block mr-8'>ÖRFJÄLL</motion.span>
-              <motion.span className='block mr-8'>ÖRFJÄLL</motion.span>
+              className='flex whitespace-nowrap flex-nowrap gap-x-4 text-[8rem] text-monRose font-black uppercase'>
+              <motion.span className='block mr-8'>{children}</motion.span>
+              <motion.span className='block mr-8'>{children}</motion.span>
+              <motion.span className='block mr-8'>{children}</motion.span>
+              <motion.span className='block mr-8'>{children}</motion.span>
+              <motion.span className='block mr-8'>{children}</motion.span>
+              <motion.span className='block mr-8'>{children}</motion.span>
+              <motion.span className='block mr-8'>{children}</motion.span>
+              <motion.span className='block mr-8'>{children}</motion.span>
           </motion.div>
           
         </div>

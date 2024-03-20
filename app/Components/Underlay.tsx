@@ -33,14 +33,15 @@ function Underlay() {
             <div 
               ref={scope}
               className="w-full snap-start bg-monfond h-[100vh] lg:container px-32 items-center justify-center flex flex-col z-0 ">
-                <h1 ref={titreRef} className=" lg:text-[15rem] text-7xl  uppercase text-[#F1D0D0]  tracking-widest font-black pb-14">ÖRFJÄLL</h1>
-                <div className='justify-end  w-full flex items-end lg:mt-5'>
+                <h1 ref={titreRef} className=" lg:text-[15rem] text-7xl  uppercase text-[#F1D0D0]  tracking-widest font-black ">ÖRFJÄLL</h1>
+                <div className='justify-end  w-full flex items-end lg:mb-5'>
                     <p className='uppercase text-[#E5C287]'>my amazing chair</p>
                 </div>
             </div>
           <About/>
           <Choose/>
-          <Remember/>
+          <Remember baseVelocity={-5}>ÖRFJÄLL</Remember>
+          <Remember baseVelocity={5}>ÖRFJÄLL</Remember>
       </div>
   )
 }
