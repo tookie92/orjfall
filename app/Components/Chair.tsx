@@ -1,6 +1,6 @@
 
 import * as THREE from "three";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import { useAtom } from "jotai";
@@ -37,23 +37,30 @@ export type GLTFResult = GLTF & {
 
 // type ActionName = "drehen" | "hoch_chair";
 // type GLTFActions = Record<ActionName, THREE.AnimationAction>;
+type Props ={
+  props: JSX.IntrinsicElements["group"],
+  action: string
+}
 
-export function Chair(props: JSX.IntrinsicElements["group"],) {
+export function Chair( props: JSX.IntrinsicElements["group"],) {
   const group = useRef<THREE.Group>(null);
   const { nodes, materials, animations } = useGLTF("/bureau.glb") as GLTFResult;
    const {actions} = useAnimations<any>(animations, group)
    const [{currentAnimation}, setCurrentAnimation]= useAtom(drehenanim)
    const [animationPlayed, setAnimationPlayed] = useAtom(animationPlayedAtom);
-
-
- 
-  useEffect(() => {
+  
+  useEffect(()=>{
     if (!animationPlayed) {
-          actions[currentAnimation]?.play()  
+      actions[currentAnimation]?.reset().fadeIn(0.5).play()
+      setTimeout(() => actions[currentAnimation]?.fadeOut(0.5), 1500);
+      
     }else{
-      actions[currentAnimation]?.stop()  
+      setAnimationPlayed(false)
+      actions[currentAnimation]?.fadeOut(0.5)
     }
-  },[currentAnimation,animationPlayed, actions] ); 
+ 
+  },[currentAnimation, animationPlayed, setAnimationPlayed,actions])
+   
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">

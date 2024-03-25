@@ -7,8 +7,8 @@ interface AnimationState {
 
 
 export const drehenanim = atom({
-    currentAnimation:"hoch_chair",
-    animations:["hoch_chair","drehen"]
+    currentAnimation:"drehen",
+    animations:["hoch_chair","drehen", "rien"]
 })
 
-export const animationPlayedAtom = atom<boolean>(true);
+export const animationPlayedAtom = atom<boolean>(false);

@@ -51,11 +51,11 @@ function Remember({baseVelocity, children}: RememberProps) {
     <>
     <div 
     
-      className="w-full snap-center bg-monfond   m-0   items-center justify-center flex flex-col  ">
-        <div  className='flex w-full whitespace-nowrap flex-wrap overflow-hidden ' >
+      className="w-full snap-center bg-monfond p-0  m-0  items-center justify-center flex flex-col  ">
+        <div className='flex w-full whitespace-nowrap flex-wrap overflow-hidden ' >
           <motion.div 
               style={{x}} 
-              className='flex whitespace-nowrap flex-nowrap gap-x-4 text-[8rem] text-monRose font-black uppercase'>
+              className='flex whitespace-nowrap flex-nowrap gap-x-4 lg:text-[8rem] text-6xl  text-monRose font-black uppercase'>
               <motion.span className='block mr-8'>{children}</motion.span>
               <motion.span className='block mr-8'>{children}</motion.span>
               <motion.span className='block mr-8'>{children}</motion.span>

@@ -7,6 +7,9 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { degToRad } from 'three/src/math/MathUtils.js'
 import { motion  } from 'framer-motion-3d'
 import { MotionValue, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion"
+import useSetCurrentAnimation from "@/hooks/useAnim"
+import { useAtom } from "jotai/react"
+import { animationPlayedAtom } from "@/lib/store"
 
 
 interface ExperienceProps{
@@ -18,7 +21,12 @@ interface ExperienceProps{
 function Experience() {
   
 
+const setAnimation = useSetCurrentAnimation()
 
+const handleAnimationClick = (anim:string)=>{
+  setAnimation(anim)
+}
+const [animatioPlayed, setAnimationPlayed] = useAtom(animationPlayedAtom)
 
 
 const viewport = useThree((state)=> state.viewport)
@@ -40,11 +48,12 @@ const isMobile = window.innerWidth / 1024
         
        
 
-            <motion.group  
-              //  scale={chairScalingFactor}
-             >
+            <motion.group onClick={()=>{
+              handleAnimationClick("hoch_chair")
+              setAnimationPlayed(true)
+              }}>
 
-              <Chair/>
+              <Chair  />
             </motion.group>
           
       
